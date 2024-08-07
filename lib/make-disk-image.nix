@@ -115,6 +115,9 @@ in
       specify the ammount of memory that gets allocated to the build vm (in mb)
       This can be usefull if you want to build images with a more involed NixOS config
       By default the vm will get 1024M/1GB
+    * --dest <path>
+      specify the directory path to output resulting images into
+      By default $PWD will be used
     USAGE
     }
 
@@ -146,6 +149,11 @@ in
           exit 1
         fi
         build_memory=$2
+        shift 1
+        ;;
+      --dest)
+        dst="$2"
+        export out="$dst"
         shift 1
         ;;
       *)
